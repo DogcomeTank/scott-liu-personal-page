@@ -1,0 +1,8 @@
+advanced-cache.php
+index.php
+uploads/
+mu-plugins/
+themes/*
+!themes/modern-studio-pro
+plugins/*
+!plugins/sl-custom-functions
