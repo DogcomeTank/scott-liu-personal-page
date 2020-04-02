@@ -8,14 +8,14 @@ jQuery(function ($) {
                 "fill": false,
                 "borderColor": getRandomColor(),
                 "lineTension": 0.1
-            },{
+            }, {
                 "label": "D",
                 "data": [25, 39, 86, 11, 96, 55, 40],
                 "fill": false,
                 "borderColor": getRandomColor(),
                 "lineTension": 0.1
             },
-    
+
         ]
     };
 
@@ -37,28 +37,40 @@ jQuery(function ($) {
 
 });
 
-jQuery(document).ready( function() {
-    jQuery("#doubleJumpRecordForm").on('submit', function(e){
-        e.preventDefault(); 
-        jQuery.ajax({
-           type : "post",
-           dataType : "json",
-           url : myAjax.ajaxurl,
-           data : {action: "jump_rope_party_record",nonce: myAjax.nonce},
-           success: function(response) {
-                console.log(response);
-           },
-           error: function(er){
-                console.log(er);
-           }
-        })   
+jQuery(document).ready(function () {
+    jQuery('.c-checkbox').on('change', function () {
+        var record = jQuery('#double-record').val();
+        if (!record == '') {
+            jQuery.ajax({
+                type: "post",
+                dataType: "json",
+                url: myAjax.ajaxurl,
+                data: {
+                    action: "jump_rope_party_record",
+                    nonce: myAjax.nonce,
+                    doubleRecord: record
+                },
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (er) {
+                    jQuery('.c-checkbox').prop('checked', true);
+                    alert(er.responseText);
+                }
+            })
+        }
+
     });
 
- })
+    jQuery("#doubleJumpRecordForm").on('submit', function (e) {
+        e.preventDefault();
+    });
+
+})
 
 
-function getRandomColor(){
-    colors = ["f78259","00bdaa","ffa41b", "639a67", "f8dc88", "ffb2a7", "f5cab3", "65587f", "b7472a", "eab0d9", "678a74", "a7e9af"];
+function getRandomColor() {
+    colors = ["f78259", "00bdaa", "ffa41b", "639a67", "f8dc88", "ffb2a7", "f5cab3", "65587f", "b7472a", "eab0d9", "678a74", "a7e9af"];
     var color = colors[Math.floor(Math.random() * colors.length)];
-    return "#"+color;
+    return "#" + color;
 }

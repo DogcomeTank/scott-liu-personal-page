@@ -25,7 +25,7 @@ get_header(); ?>
     <input class="c-checkbox" type="checkbox" id="checkbox">
     <div class="c-formContainer">
         <form class="c-form" id="doubleJumpRecordForm">
-            <input class="c-form__input" placeholder="My Highest Double" type="number" min="0">
+            <input class="c-form__input" id="double-record" placeholder="My Highest Double" type="number" min="0" required>
             <label class="c-form__buttonLabel" for="checkbox">
                 <button class="c-form__button" type="submit">Update</button>
             </label>

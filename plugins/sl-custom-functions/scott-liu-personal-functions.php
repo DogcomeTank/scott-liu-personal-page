@@ -53,14 +53,19 @@ add_action("wp_ajax_nopriv_jump_rope_party_record", "my_must_login");
 
 function jump_rope_party_record() {
     global $wpdb;
+    $login = is_user_logged_in();
+    $record = $_POST['doubleRecord'];
 
     if ( !wp_verify_nonce( $_REQUEST['nonce'], "my_user_play_nonce")) {
         exit("No naughty business please");
-     }   
+    }   
    
-     print json_encode('yes');
+    if(!$login){
+        exit("Please login.");
+    }
 
-   die();
+    print json_encode($record);
+    die();
 
 }
 function my_must_login() {
