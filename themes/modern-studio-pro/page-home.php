@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid' ],
       header: {
-        left: 'prevYear,prev,next,nextYear today',
+        left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,dayGridWeek,dayGridDay'
+        right: 'dayGridMonth,dayGridDay'
       },
       defaultDate: '2020-02-12',
       navLinks: true, // can click day/week names to navigate views
