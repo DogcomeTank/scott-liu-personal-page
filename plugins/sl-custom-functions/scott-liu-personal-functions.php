@@ -48,8 +48,25 @@ function sl_maybe_create_table( $table_name, $create_ddl ) {
 
 // ajax post start
 
+add_action("wp_ajax_jump_rope_party_record", "jump_rope_party_record");
+add_action("wp_ajax_nopriv_jump_rope_party_record", "my_must_login");
 
+function jump_rope_party_record() {
+    global $wpdb;
 
+    if ( !wp_verify_nonce( $_REQUEST['nonce'], "my_user_play_nonce")) {
+        exit("No naughty business please");
+     }   
+   
+     print json_encode('yes');
+
+   die();
+
+}
+function my_must_login() {
+    echo "You must log in to play";
+    die();
+ }
 
 // custom_email
 add_action( 'wp_ajax_custom_email', 'custom_email' );
