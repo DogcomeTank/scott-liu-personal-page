@@ -191,6 +191,13 @@ genesis_register_sidebar( array(
 ) );
 
 // Custom code
+
+// enable jQuery
+function sl_theme_scripts() {
+	wp_enqueue_script('jquery');
+  }
+add_action('wp_enqueue_scripts', 'sl_theme_scripts');
+
 function my_login_logo_one() { 
 	?> 
 	<style type="text/css"> 

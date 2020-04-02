@@ -6,3 +6,5 @@ themes/*
 !themes/modern-studio-pro
 plugins/*
 !plugins/sl-custom-functions
+upgrade/
+lib/
