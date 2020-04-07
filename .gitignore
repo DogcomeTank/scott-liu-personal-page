@@ -3,7 +3,7 @@ index.php
 uploads/
 mu-plugins/
 themes/*
-!themes/modern-studio-pro
+!themes/storefront-child
 plugins/*
 !plugins/sl-custom-functions
 upgrade/

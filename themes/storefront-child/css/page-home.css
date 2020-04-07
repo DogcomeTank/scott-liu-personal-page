@@ -1,0 +1,34 @@
+.entry-header {
+  display: none;
+}
+
+.entry-content code {
+  background-color: white;
+  color: black;
+}
+
+.site-inner {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  #calendar {
+    font-size: 10px;
+  }
+  .fc-button .fc-icon {
+    font-size: 8px;
+  }
+  .fc-button-group * {
+    font-size: 8px;
+  }
+  .fc-today-button {
+    font-size: 8px;
+  }
+  .fc-center h2 {
+    font-size: 12px !important;
+  }
+}
+/*# sourceMappingURL=page-home.css.map */
