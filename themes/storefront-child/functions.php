@@ -22,4 +22,13 @@ function enqueue_general() {
 }
 
 add_action( 'wp_enqueue_scripts', 'enqueue_general' );
+
+// Disable admin bar
+add_action('after_setup_theme', 'remove_admin_bar');
+ 
+function remove_admin_bar() {
+  show_admin_bar(false);
+}
+// Disable admin bar
+
 // End Custom Code

@@ -1,15 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
-
-body{
-	font-family: 'Quicksand', sans-serif;
+.col-full {
+  margin-left: .8em;
+  margin-right: .8em;
 }
 
 .storefront-handheld-footer-bar ul li > a::before {
-  font-size: 1.2em !important;
-  line-height: 2em !important;
+  font-size: 1.2em;
+  line-height: 2em;
 }
 
 .storefront-handheld-footer-bar {
   height: 40px !important;
+}
+
+.scott-picture {
+  margin-bottom: -108px;
 }
 /*# sourceMappingURL=general-style.css.map */

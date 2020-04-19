@@ -58,6 +58,7 @@ function jump_rope_party_record() {
     $record = '';
     $record = test_input($_POST['doubleRecord']);
     $result = ['record'=>1];
+    // $dt = new DateTime("now", new DateTimeZone('America/Vancouver'));
     $today = date("Y-m-d");
 
     if ( !wp_verify_nonce( $_REQUEST['nonce'], "my_user_play_nonce")) {

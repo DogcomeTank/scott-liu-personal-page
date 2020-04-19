@@ -29,6 +29,8 @@ function enqueue_jump_rope_page() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_jump_rope_page' );
 
+// $dt = new DateTime("now", new DateTimeZone('America/Vancouver'));
+date_default_timezone_set('America/Vancouver');
 
 get_header(); ?>
 
@@ -48,8 +50,8 @@ get_header(); ?>
     </div>
 
     <div id="faq" class="w3-container theTapItem" style="display:none">
-    <h2>What is Jump Rope Party? </h2><span><i style="color: #FD7E14; width: 40px; height: 40px; padding:10px;border-radius:50%;box-shadow:0 0 5px rgba(0,0,0,.17); text-align: center;"
-            class="fas fa-question"></i></span>
+    <h2>What is Jump Rope Party <span><i style="color: #FD7E14; width: 40px; height: 40px; padding:5px;border-radius:50%;box-shadow:0 0 5px rgba(0,0,0,.17); text-align: center;"
+            class="fas fa-question"></i></span> </h2>
     </div>
 </div>
 
