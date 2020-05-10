@@ -4,6 +4,7 @@ uploads/
 mu-plugins/
 themes/*
 !themes/storefront-child
+themes/storefront-child/frontend
 plugins/*
 !plugins/sl-custom-functions
 upgrade/

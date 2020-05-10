@@ -19,6 +19,11 @@ add_filter( 'locale_stylesheet_uri', 'chld_thm_cfg_locale_css' );
 // Custom Code
 function enqueue_general() {
     wp_enqueue_style ( 'general-style', get_stylesheet_directory_uri() . '/css/general-style.css',array(), '1.0' );
+    wp_enqueue_style ( 'w3-css-style', get_stylesheet_directory_uri() . '/lib/w3.css',array(), '1.0' );
+	
+	if(is_page('lottie-integration')){
+		wp_enqueue_script ( 'lottie-script','https://cdnjs.com/libraries/bodymovin',array(), '1.0',true );
+	}
 }
 
 add_action( 'wp_enqueue_scripts', 'enqueue_general' );
