@@ -13,5 +13,24 @@ date_default_timezone_set('America/Vancouver');
 
 get_header(); ?>
 
+<div class="sun-container">
+<div class="sun">
+  <div class="sunrays">
+    <span />
+    <span />
+    <span />
+  </div>
+  
+  <div class="face">
+    <div class="left eye"></div>
+    <div class="right eye"></div>
+    <div class="left cheek"></div>
+    <div class="right cheek"></div>
+    <div class="mouth"></div>
+  </div>
+</div>
+
+</div>
+
 
 <?php get_footer(); ?>

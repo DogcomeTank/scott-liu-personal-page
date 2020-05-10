@@ -1,1 +1,210 @@
-/* No CSS *//*# sourceMappingURL=sun.css.map */
+.sun-container {
+  height: 100%;
+  background: #85C7F2;
+  padding: 50px;
+  overflow: hidden;
+}
+
+.sun {
+  height: 130px;
+  width: 130px;
+  position: relative;
+  margin: 0 auto;
+  top: calc(50% - 65px);
+}
+
+.sun .sunrays {
+  -webkit-animation: spin 5s linear infinite;
+  animation: spin 5s linear infinite;
+  position: absolute;
+  -webkit-box-shadow: 0px 0px 100px #ffe77d;
+          box-shadow: 0px 0px 100px #ffe77d;
+  height: 130px;
+  width: 130px;
+}
+
+.sun .face {
+  position: absolute;
+  margin: -10%;
+  width: 120%;
+  height: 120%;
+  border-radius: 100%;
+  background-color: #FFB02B;
+}
+
+.sun .face::before {
+  content: "";
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  border-radius: 100%;
+  background-color: #FFDD4A;
+}
+
+.sun .face .eye {
+  position: absolute;
+  top: 40%;
+  width: 7%;
+  height: 7%;
+  border-radius: 100%;
+  background-color: #756B01;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-animation: blink 5s infinite;
+          animation: blink 5s infinite;
+}
+
+.sun .face .left.eye {
+  left: 28%;
+}
+
+.sun .face .right.eye {
+  right: 28%;
+}
+
+.sun .face .cheek {
+  position: absolute;
+  top: 46%;
+  width: 4%;
+  height: 4%;
+  border-radius: 100%;
+  background-color: rgba(255, 176, 43, 0.6);
+  -webkit-transform: scale(2.5, 0.75);
+          transform: scale(2.5, 0.75);
+}
+
+.sun .face .left.cheek {
+  left: 28%;
+}
+
+.sun .face .right.cheek {
+  right: 28%;
+}
+
+.sun .face .mouth {
+  position: absolute;
+  top: 52%;
+  left: 35%;
+  width: 30%;
+  height: 16%;
+  border-radius: 20% 20% 60% 60% / 30% 30% 100% 100%;
+  background-color: #756B01;
+  overflow: hidden;
+  -webkit-transform: translate(0);
+          transform: translate(0);
+}
+
+.sun .face .mouth::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 15%;
+  width: 70%;
+  height: 100%;
+  border-radius: 100%;
+  background-color: #F04E50;
+}
+
+.circle {
+  height: 130px;
+  width: 130px;
+  z-index: 1;
+  background: #ffe77d;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.sunrays span {
+  background: #FFB02B;
+  width: 130px;
+  height: 130px;
+  position: absolute;
+}
+
+.sunrays span:first-child {
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+.sunrays span:nth-child(2) {
+  -webkit-transform: rotate(60deg);
+  transform: rotate(60deg);
+}
+
+.eye {
+  position: absolute;
+  top: 40%;
+  width: 7%;
+  height: 7%;
+  border-radius: 100%;
+  background-color: #756B01;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-animation: blink 5s infinite;
+          animation: blink 5s infinite;
+}
+
+.eye .left.eye {
+  left: 25%;
+}
+
+.eye .right.eye {
+  right: 25%;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes blink {
+  0% {
+    height: 7%;
+    width: 7%;
+    border-radius: 50%;
+  }
+  5% {
+    height: 1px;
+    width: 7%;
+    border-radius: 0;
+  }
+  10% {
+    height: 7%;
+    width: 7%;
+    border-radius: 50%;
+  }
+}
+
+@keyframes blink {
+  0% {
+    height: 7%;
+    width: 7%;
+    border-radius: 50%;
+  }
+  5% {
+    height: 1px;
+    width: 7%;
+    border-radius: 0;
+  }
+  10% {
+    height: 7%;
+    width: 7%;
+    border-radius: 50%;
+  }
+}
+/*# sourceMappingURL=sun.css.map */
