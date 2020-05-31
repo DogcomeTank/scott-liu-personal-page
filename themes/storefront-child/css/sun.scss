@@ -76,7 +76,7 @@ $pink: #F04E50;
     }
     
     .left.eye {
-      left: 28%;
+        animation: lefteyeposition 5s infinite;
     }
     
     .right.eye {
@@ -145,25 +145,25 @@ $pink: #F04E50;
   &:nth-child(2){@include rotate(60deg);}
 }
 
-.eye {
-      position: absolute;
-      top: 40%;
-      width: 7%;
-      height: 7%;
-      border-radius: 100%;
-      background-color: $green;
-      transform: translateY(-50%);
-      animation: blink 5s infinite;
+// .eye {
+//       position: absolute;
+//       top: 40%;
+//       width: 7%;
+//       height: 7%;
+//       border-radius: 100%;
+//       background-color: $green;
+//       transform: translateY(-50%);
+//       animation: blink 5s infinite;
   
     
-    .left.eye {
-      left: 25%;
-    }
+//     .left.eye {
+//       left: 25%;
+//     }
     
-    .right.eye {
-      right: 25%;
-    }
- }
+//     .right.eye {
+//       right: 25%;
+//     }
+//  }
 
 //animations
 @keyframes spin {
@@ -179,3 +179,9 @@ $pink: #F04E50;
   5% { @include eye-shape(1px, 7%, 0); }
   10% { @include eye-shape(7%, 7%, 50%); }
 }
+
+@keyframes lefteyeposition {
+    0% { left: 28%; }
+    5% { left: 38%; }
+    10% { left: 28%; }
+  }

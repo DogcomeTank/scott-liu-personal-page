@@ -57,7 +57,8 @@
 }
 
 .sun .face .left.eye {
-  left: 28%;
+  -webkit-animation: lefteyeposition 5s infinite;
+          animation: lefteyeposition 5s infinite;
 }
 
 .sun .face .right.eye {
@@ -133,27 +134,6 @@
   transform: rotate(60deg);
 }
 
-.eye {
-  position: absolute;
-  top: 40%;
-  width: 7%;
-  height: 7%;
-  border-radius: 100%;
-  background-color: #756B01;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  -webkit-animation: blink 5s infinite;
-          animation: blink 5s infinite;
-}
-
-.eye .left.eye {
-  left: 25%;
-}
-
-.eye .right.eye {
-  right: 25%;
-}
-
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
@@ -205,6 +185,30 @@
     height: 7%;
     width: 7%;
     border-radius: 50%;
+  }
+}
+
+@-webkit-keyframes lefteyeposition {
+  0% {
+    left: 28%;
+  }
+  5% {
+    left: 38%;
+  }
+  10% {
+    left: 28%;
+  }
+}
+
+@keyframes lefteyeposition {
+  0% {
+    left: 28%;
+  }
+  5% {
+    left: 38%;
+  }
+  10% {
+    left: 28%;
   }
 }
 /*# sourceMappingURL=sun.css.map */
