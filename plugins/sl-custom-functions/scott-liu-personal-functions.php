@@ -14,11 +14,11 @@ function create_custom_db_table() {
     // create custom tables
     $sql_jump_rope_party = "
         CREATE TABLE `sl_jump_rope_party` (
-            `id` int NOT NULL,
+            `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `wp_users_id` int NOT NULL,
             `record` int NOT NULL,
             `record_date` date NOT NULL
-        );
+        ) COLLATE 'utf8_unicode_520_ci';
     ";
     sl_maybe_create_table( 'sl_jump_rope_party', $sql_jump_rope_party );
     
@@ -48,9 +48,69 @@ function sl_maybe_create_table( $table_name, $create_ddl ) {
 
 // ajax post start
 
+add_action("wp_ajax_jump_rope_party_record", "jump_rope_party_record");
+add_action("wp_ajax_nopriv_jump_rope_party_record", "my_must_login");
 
+function jump_rope_party_record() {
+    global $wpdb;
+    $login = is_user_logged_in();
+    $current_user = get_current_user_id();
+    $record = '';
+    $record = test_input($_POST['doubleRecord']);
+    $result = ['record'=>1];
+    $today = date("Y-m-d");
 
+    if ( !wp_verify_nonce( $_REQUEST['nonce'], "my_user_play_nonce")) {
+        exit("No naughty business please");
+    }   
+   
+    if(!$login){
+        exit("Please login.");
+    }
 
+    
+    // $sql_get_record =  "SELECT * FROM `sl_jump_rope_party` WHERE `wp_users_id` = '2' AND `record_date` = '2020-04-03'";
+
+    $sql_get_record =  "
+        SELECT * FROM `sl_jump_rope_party` WHERE `wp_users_id` = ".$current_user." AND `record_date` = '".$today."'
+    " ;
+    $has_record_today = $wpdb->get_results ($sql_get_record);
+    $result['has_record'] = $has_record_today;
+// 1. Check if has record
+    if($has_record_today){
+        $old_record = $has_record_today[0]->record;
+        $result['old_record'] = $old_record;
+// 2. Has record
+        // check if number is integer
+
+        if($old_record < $record){
+        //  Update record if new number larger then the old one
+            $wpdb->update('sl_jump_rope_party', array('record'=>$record), array('wp_users_id'=>$current_user, 'record_date' => $today));
+        }
+    }else{
+// 3. No record
+        // Insert new record
+        $result['record'] = 0;
+        $sql_insert_new_record = "INSERT INTO `sl_jump_rope_party` (`wp_users_id`, `record`, `record_date`)
+        VALUES ('1', '65', '2020-04-03');";
+
+        $table = "sl_jump_rope_party";
+        $data = array('wp_users_id' => $current_user, 'record' => $record, 'record_date' =>$today );
+        // $format = array('%s','%d');
+        $wpdb->insert($table,$data);
+
+    }
+
+        print json_encode($result);
+    die();
+
+}
+function my_must_login() {
+    echo "You must log in to play";
+    die();
+ }
+ 
+ 
 // custom_email
 add_action( 'wp_ajax_custom_email', 'custom_email' );
 add_action( 'wp_ajax_nopriv_custom_email', 'custom_email' );
