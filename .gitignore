@@ -9,3 +9,4 @@ plugins/*
 !plugins/sl-custom-functions
 upgrade/
 lib/
+.vscode

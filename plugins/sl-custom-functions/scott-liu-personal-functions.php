@@ -13,27 +13,51 @@ if( ! defined( 'WPINC' ) ){
     die;
 }
 
+// Menu setup
 function sl_custom_plugin_settings_page(){
+    // Add an item to the menu.
     add_menu_page(
-        'SL Custom Functions',
-        'SL Custom',
+        __( 'SL Custome Plugin Dashboard', 'textdomain' ), //page title
+        __( 'Dashboard', 'textdomain' ), //menu title
         'manage_options',
-        'sl_custom_functions',
-        'sl_cf_page_markup',
-        'dashicons-wordpress-alt',
-        100
+        'sl-custom-dashboard', //slug
+        'sl_cf_page_markup', //callback function
+        'dashicons-carrot',
+        2
     );
+    add_submenu_page(
+        'sl-custom-dashboard', //parent_slug
+        __( '1st Settings', 'textdomain' ), //page_title
+        __( 'Setting', 'textdomain' ),  //menu_title
+        'manage_options',
+        'sl-plugin-setting-1', //menu_slug
+        'sl_cf_subpage_markup', //callable function
+    );
+
+    // add_submenu_page( 'sl-custom-dashboard', 'Dashboard', 'Menu Title',
+    // 'manage_options', 'sl-dashboard');
 }
 add_action('admin_menu', 'sl_custom_plugin_settings_page');
 function sl_cf_page_markup(){
     ?>
-    
     <div class="wrap">
         <h1><?php esc_html_e( get_admin_page_title() ); ?></h1>
     </div>
 
     <?php
 }
+
+function sl_cf_subpage_markup(){
+    ?>
+    <div class="wrap">
+        <h1>Subpage - 1</h1>
+    </div>
+
+    <?php
+}
+
+// Menu setup END
+
 
 function create_custom_db_table() {
     // create custom tables
