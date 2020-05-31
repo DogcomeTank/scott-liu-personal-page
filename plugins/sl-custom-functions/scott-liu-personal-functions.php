@@ -8,7 +8,32 @@
  * Author URI: https://scott-liu.ca/
  */
 
+//  if this file is called directly, abort
+if( ! defined( 'WPINC' ) ){
+    die;
+}
 
+function sl_custom_plugin_settings_page(){
+    add_menu_page(
+        'SL Custom Functions',
+        'SL Custom',
+        'manage_options',
+        'sl_custom_functions',
+        'sl_cf_page_markup',
+        'dashicons-wordpress-alt',
+        100
+    );
+}
+add_action('admin_menu', 'sl_custom_plugin_settings_page');
+function sl_cf_page_markup(){
+    ?>
+    
+    <div class="wrap">
+        <h1><?php esc_html_e( get_admin_page_title() ); ?></h1>
+    </div>
+
+    <?php
+}
 
 function create_custom_db_table() {
     // create custom tables
@@ -68,9 +93,6 @@ function jump_rope_party_record() {
     if(!$login){
         exit("Please login.");
     }
-
-    
-    // $sql_get_record =  "SELECT * FROM `sl_jump_rope_party` WHERE `wp_users_id` = '2' AND `record_date` = '2020-04-03'";
 
     $sql_get_record =  "
         SELECT * FROM `sl_jump_rope_party` WHERE `wp_users_id` = ".$current_user." AND `record_date` = '".$today."'
