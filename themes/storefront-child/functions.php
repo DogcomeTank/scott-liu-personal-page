@@ -36,4 +36,15 @@ function remove_admin_bar() {
 }
 // Disable admin bar
 
+// Footer credit
+add_filter( 'storefront_credit_links_output', 'sl_change_footer_credit', 10, 1 );
+function sl_change_footer_credit($links_output){
+    $links_output = '';
+    
+    return $links_output;
+}
+
+// End Footer Credit
+
+
 // End Custom Code
