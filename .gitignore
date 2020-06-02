@@ -10,3 +10,4 @@ plugins/*
 upgrade/
 lib/
 .vscode
+node_modules/

@@ -1,0 +1,15 @@
+{
+    "name": "scottliu/sl-custom-functions",
+    "description": "My first plugin development",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Scott Liu",
+            "email": "contact@scott-liu.ca"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4":{"Sl\\":"./inc"}
+    }
+}

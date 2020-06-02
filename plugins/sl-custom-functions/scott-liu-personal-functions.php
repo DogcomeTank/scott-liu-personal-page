@@ -9,8 +9,10 @@
  */
 
 //  if this file is called directly, abort
-if( ! defined( 'WPINC' ) ){
-    die;
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+if(file_exists( dirname(__FILE__) . '/vendor/autoload.php' )){
+    require_once dirname(__FILE__) . '/vendor/autoload.php';
 }
 
 // Menu setup
@@ -27,15 +29,13 @@ function sl_custom_plugin_settings_page(){
     );
     add_submenu_page(
         'sl-custom-dashboard', //parent_slug
-        __( '1st Settings', 'textdomain' ), //page_title
+        __( 'Settings', 'textdomain' ), //page_title
         __( 'Setting', 'textdomain' ),  //menu_title
         'manage_options',
         'sl-plugin-setting-1', //menu_slug
         'sl_cf_subpage_markup', //callable function
     );
 
-    // add_submenu_page( 'sl-custom-dashboard', 'Dashboard', 'Menu Title',
-    // 'manage_options', 'sl-dashboard');
 }
 add_action('admin_menu', 'sl_custom_plugin_settings_page');
 function sl_cf_page_markup(){
@@ -50,7 +50,7 @@ function sl_cf_page_markup(){
 function sl_cf_subpage_markup(){
     ?>
     <div class="wrap">
-        <h1>Subpage - 1</h1>
+        <h1><?php esc_html_e( get_admin_page_title() ); ?></h1>
     </div>
 
     <?php
