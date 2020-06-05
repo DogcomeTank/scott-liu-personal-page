@@ -6,7 +6,7 @@ themes/*
 !themes/storefront-child
 themes/storefront-child/frontend
 plugins/*
-!plugins/sl-custom-functions
+!plugins/scott-liu-personal-functions
 upgrade/
 lib/
 .vscode
