@@ -3,19 +3,21 @@
  * @package sl-custom-functions
  */
 
- namespace SL;
+namespace Sl;
 
- class init{
+final class init{
 
-    function __construct(){
+function __construct(){
+    // Sl\Pages\Admin::register();
+}
 
+public static function register_services(){
+    echo `
+        <h1>XxxxxxxxxxXxxxxxxxxxXxxxxxxxxxXxxxxxxxxxXxxxxxxxxx</h1>
+    `;
+}
+
+    public static function activate(){
+        flush_rewrite_rules();
     }
-
-    public static function register_services(){
-        //echo "working";
-    }
-
-     public static function activate(){
-         flush_rewrite_rules();
-     }
- }
+}

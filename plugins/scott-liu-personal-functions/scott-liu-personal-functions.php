@@ -11,59 +11,55 @@
 //  if this file is called directly, abort
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if(file_exists( dirname(__FILE__) . '/vendor/autoload.php' )){
-    require_once dirname(__FILE__) . '/vendor/autoload.php';
-}
+// if(file_exists( dirname(__FILE__) . '/vendor/autoload.php' )){
+//     require_once dirname(__FILE__) . '/vendor/autoload.php';
+// }
 
-Use SL\Activate;
+require_once dirname(__FILE__) . '/vendor/autoload.php';
+
+// Use Sl\Activate;
+// Use Sl;
+
+$reg = new Sl\Pages\Admin;
+$reg -> register();
 
 
-if( class_exists('Sl\\Init') ){
-    Sl\Init::register_services();
-}
+// if( class_exists('Sl\\Init') ){
+//     Sl\Init::register_services();
+// }
 
-// Menu setup
-function sl_custom_plugin_settings_page(){
+// // Menu setup
+// function sl_custom_plugin_settings_page(){
     
 
-    // Add an item to the menu.
-    add_menu_page(
-        __( 'SL Custome Plugin Dashboard', 'textdomain' ), //page title
-        __( 'Dashboard', 'textdomain' ), //menu title
-        'manage_options',
-        'sl-custom-dashboard', //slug
-        'sl_cf_page_markup', //callback function
-        'dashicons-carrot',
-        2
-    );
-    add_submenu_page(
-        'sl-custom-dashboard', //parent_slug
-        __( 'Settings', 'textdomain' ), //page_title
-        __( 'Setting', 'textdomain' ),  //menu_title
-        'manage_options',
-        'sl-plugin-setting-1', //menu_slug
-        'sl_cf_subpage_markup', //callable function
-    );
+//     // Add an item to the menu.
+//     add_menu_page(
+//         __( 'SL Custome Plugin Dashboard', 'textdomain' ), //page title
+//         __( 'Dashboard', 'textdomain' ), //menu title
+//         'manage_options',
+//         'sl-custom-dashboard', //slug
+//         'sl_cf_page_markup', //callback function
+//         'dashicons-carrot',
+//         2
+//     );
+//     add_submenu_page(
+//         'sl-custom-dashboard', //parent_slug
+//         __( 'Settings', 'textdomain' ), //page_title
+//         __( 'Setting', 'textdomain' ),  //menu_title
+//         'manage_options',
+//         'sl-plugin-setting-1', //menu_slug
+//         'sl_cf_subpage_markup', //callable function
+//     );
 
-}
-add_action('admin_menu', 'sl_custom_plugin_settings_page');
-function sl_cf_page_markup(){
-    ?>
-    <div class="wrap">
-        <h1><?php esc_html_e( get_admin_page_title() ); ?></h1>
-    </div>
+// }
+// add_action('admin_menu', 'sl_custom_plugin_settings_page');
+// function sl_cf_page_markup(){
 
-    <?php
-}
+// }
 
-function sl_cf_subpage_markup(){
-    ?>
-    <div class="wrap">
-        <h1><?php esc_html_e( get_admin_page_title() ); ?></h1>
-    </div>
+// function sl_cf_subpage_markup(){
 
-    <?php
-}
+// }
 
 // Menu setup END
 

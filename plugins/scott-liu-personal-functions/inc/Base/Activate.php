@@ -3,4 +3,4 @@
  * @package sl-custom-functions
  */
 
- Use SL;
+ Use Sl\Base;
