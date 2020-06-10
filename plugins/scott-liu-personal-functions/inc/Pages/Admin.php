@@ -6,11 +6,6 @@
 namespace Sl\Pages;
 
 class Admin{
-    function __construct(){}
-
-    // public function register(){
-    //     // echo "yes";
-    // }
 
     public function register(){
         // Add plugin menu

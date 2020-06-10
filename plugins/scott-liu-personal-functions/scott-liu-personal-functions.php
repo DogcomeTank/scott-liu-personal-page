@@ -17,15 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 require_once dirname(__FILE__) . '/vendor/autoload.php';
 
-// Use Sl\Activate;
-// Use Sl;
-
-// $reg = new Sl\Pages\Admin;
-// $reg -> register();
-$sl_init = new Sl\init;
-$sl_init->register_services();
-
-
+Sl\init::register_services();
 
 function create_custom_db_table() {
     // create custom tables
