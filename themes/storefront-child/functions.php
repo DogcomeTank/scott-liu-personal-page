@@ -23,7 +23,9 @@ function enqueue_general() {
 	
 	if(is_page('lottie-integration')){
 		wp_enqueue_script ( 'lottie-script','https://cdnjs.com/libraries/bodymovin',array(), '1.0',true );
-	}
+    }
+    
+    
 }
 
 add_action( 'wp_enqueue_scripts', 'enqueue_general' );
@@ -35,6 +37,28 @@ function remove_admin_bar() {
   show_admin_bar(false);
 }
 // Disable admin bar
+
+//Testing
+
+
+add_action( 'storefront_before_content', 'test_func', 10, 1 );
+function test_func(){
+
+    if(get_permalink(get_the_ID()) == "https://scottliuca.local/product/wine-bottle-sketch-drawing/"){
+        echo $_SERVER['REQUEST_URI'];
+    }
+
+    if(strpos($_SERVER['REQUEST_URI'], 'bottle-sketch-drawing') !== false){
+        echo 'Yes';
+    }else{
+        echo 'No';
+    }
+
+  
+}
+
+
+// End testing
 
 // Footer credit
 add_filter( 'storefront_credit_links_output', 'sl_change_footer_credit', 10, 1 );

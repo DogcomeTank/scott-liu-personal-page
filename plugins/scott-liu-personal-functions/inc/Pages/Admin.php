@@ -8,6 +8,10 @@ namespace Sl\Pages;
 class Admin{
     function __construct(){}
 
+    // public function register(){
+    //     // echo "yes";
+    // }
+
     public function register(){
         // Add plugin menu
         add_action('admin_menu', array($this, 'sl_custom_plugin_settings_page'));

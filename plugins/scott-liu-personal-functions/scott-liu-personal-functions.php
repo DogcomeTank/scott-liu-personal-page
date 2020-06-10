@@ -20,48 +20,11 @@ require_once dirname(__FILE__) . '/vendor/autoload.php';
 // Use Sl\Activate;
 // Use Sl;
 
-$reg = new Sl\Pages\Admin;
-$reg -> register();
+// $reg = new Sl\Pages\Admin;
+// $reg -> register();
+$sl_init = new Sl\init;
+$sl_init->register_services();
 
-
-// if( class_exists('Sl\\Init') ){
-//     Sl\Init::register_services();
-// }
-
-// // Menu setup
-// function sl_custom_plugin_settings_page(){
-    
-
-//     // Add an item to the menu.
-//     add_menu_page(
-//         __( 'SL Custome Plugin Dashboard', 'textdomain' ), //page title
-//         __( 'Dashboard', 'textdomain' ), //menu title
-//         'manage_options',
-//         'sl-custom-dashboard', //slug
-//         'sl_cf_page_markup', //callback function
-//         'dashicons-carrot',
-//         2
-//     );
-//     add_submenu_page(
-//         'sl-custom-dashboard', //parent_slug
-//         __( 'Settings', 'textdomain' ), //page_title
-//         __( 'Setting', 'textdomain' ),  //menu_title
-//         'manage_options',
-//         'sl-plugin-setting-1', //menu_slug
-//         'sl_cf_subpage_markup', //callable function
-//     );
-
-// }
-// add_action('admin_menu', 'sl_custom_plugin_settings_page');
-// function sl_cf_page_markup(){
-
-// }
-
-// function sl_cf_subpage_markup(){
-
-// }
-
-// Menu setup END
 
 
 function create_custom_db_table() {
