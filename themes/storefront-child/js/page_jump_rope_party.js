@@ -116,11 +116,22 @@ function displayChart(){
         "datasets": Object.values(dataSets)
     };
 
-    var options = {
+    // var options = {
+    //     scales: {
+    //         yAxes: [{
+    //             ticks: {
+    //                 beginAtZero: true
+    //             }
+    //         }]
+    //     }
+    // };
+
+    var options =  {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    suggestedMin: 50,
+                    suggestedMax: 100
                 }
             }]
         }

@@ -19,7 +19,32 @@ add_filter( 'locale_stylesheet_uri', 'chld_thm_cfg_locale_css' );
 // Custom Code
 function enqueue_general() {
     wp_enqueue_style ( 'general-style', get_stylesheet_directory_uri() . '/css/general-style.css',array(), '1.0' );
+    wp_enqueue_style ( 'w3-css-style', get_stylesheet_directory_uri() . '/lib/w3.css',array(), '1.0' );
+	
+	if(is_page('lottie-integration')){
+		wp_enqueue_script ( 'lottie-script','https://cdnjs.com/libraries/bodymovin',array(), '1.0',true );
+	}
 }
 
 add_action( 'wp_enqueue_scripts', 'enqueue_general' );
+
+// Disable admin bar
+add_action('after_setup_theme', 'remove_admin_bar');
+ 
+function remove_admin_bar() {
+  show_admin_bar(false);
+}
+// Disable admin bar
+
+// Footer credit
+add_filter( 'storefront_credit_links_output', 'sl_change_footer_credit', 10, 1 );
+function sl_change_footer_credit($links_output){
+    $links_output = '';
+    
+    return $links_output;
+}
+
+// End Footer Credit
+
+
 // End Custom Code

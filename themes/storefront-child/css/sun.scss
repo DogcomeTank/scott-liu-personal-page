@@ -1,0 +1,187 @@
+//variables
+$size: 130px;
+$yellow: #FFDD4A;
+$blue: #85C7F2;
+$green: #756B01;
+$orange: #FFB02B;
+$pink: #F04E50;
+
+
+//mixins
+@mixin rotate($deg){
+  -ms-transform: rotate($deg);
+  -webkit-transform: rotate($deg);
+  transform: rotate($deg);
+}
+@mixin animate($name, $seconds, $direction, $length){
+  -webkit-animation:$name $seconds $direction $length;
+  -moz-animation:$name $seconds $direction $length;
+  animation:$name $seconds $direction $length;
+}
+@mixin eye-shape($height, $width, $radius){
+    height: $height;
+    width: $width;
+    border-radius: $radius;
+}
+
+.sun-container{
+  height: 100%;
+  background: $blue;
+  padding: 50px;
+  overflow:hidden;
+}
+
+.sun{
+  height: $size;
+  width: $size;
+  position: relative;
+  margin: 0 auto;
+  top: calc(50% - 65px);
+  .sunrays{
+    @include animate(spin, 5s, linear, infinite);
+    position: absolute;
+    box-shadow: 0px 0px 100px lighten($yellow, 10%);
+    height: $size;
+    width: $size;
+  }
+  
+  .face {
+    position: absolute;
+    margin: -10%;
+    width: 120%;
+    height: 120%;
+    border-radius: 100%;
+    background-color: $orange;
+    
+    &::before {
+      content: "";
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      width: 90%;
+      height: 90%;
+      border-radius: 100%;
+      background-color: $yellow;
+    }
+    
+    .eye {
+      position: absolute;
+      top: 40%;
+      width: 7%;
+      height: 7%;
+      border-radius: 100%;
+      background-color: $green;
+      transform: translateY(-50%);
+      animation: blink 5s infinite;
+    }
+    
+    .left.eye {
+        animation: lefteyeposition 5s infinite;
+    }
+    
+    .right.eye {
+      right: 28%;
+    }
+    
+    .cheek {
+      position: absolute;
+      top: 46%;
+      width: 4%;
+      height: 4%;
+      border-radius: 100%;
+      background-color: rgba($orange, 0.6);
+      transform: scale(2.5, 0.75);
+    }
+    
+    .left.cheek {
+      left: 28%;
+    }
+    
+    .right.cheek {
+      right: 28%;
+    }
+    
+    .mouth {
+      position: absolute;
+      top: 52%;
+      left: 35%;
+      width: 30%;
+      height: 16%;
+      border-radius: 20% 20% 60% 60% / 30% 30% 100% 100%;
+      background-color: $green;
+      overflow: hidden;
+      transform: translate(0);
+      
+      &::after {
+        content: "";
+        position: absolute;
+        top: 30%;
+        left: 15%;
+        width: 70%;
+        height: 100%;
+        border-radius: 100%;
+        background-color: $pink;
+      }
+    }
+  }
+  
+}
+
+.circle{
+  height: $size;
+  width: $size;
+  z-index: 1;
+  background: lighten($yellow, 10%);
+  position: absolute;
+  border-radius: 50%;
+}
+
+.sunrays span{
+  background: $orange;
+  width:$size;
+  height:$size;
+  position: absolute;
+  &:first-child{@include rotate(30deg);}
+  &:nth-child(2){@include rotate(60deg);}
+}
+
+// .eye {
+//       position: absolute;
+//       top: 40%;
+//       width: 7%;
+//       height: 7%;
+//       border-radius: 100%;
+//       background-color: $green;
+//       transform: translateY(-50%);
+//       animation: blink 5s infinite;
+  
+    
+//     .left.eye {
+//       left: 25%;
+//     }
+    
+//     .right.eye {
+//       right: 25%;
+//     }
+//  }
+
+//animations
+@keyframes spin {
+  0% {-webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+  0% {-moz-transform: rotate(0deg); }
+  100% { -moz-transform: rotate(360deg); }
+}
+@keyframes blink {
+  0% { @include eye-shape(7%, 7%, 50%); }
+  5% { @include eye-shape(1px, 7%, 0); }
+  10% { @include eye-shape(7%, 7%, 50%); }
+}
+
+@keyframes lefteyeposition {
+    0% { left: 28%; }
+    5% { left: 38%; }
+    10% { left: 28%; }
+  }
