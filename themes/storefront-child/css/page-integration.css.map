@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAA;EACJ,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,KAAK;EACZ,aAAa,EAAE,KAAK;CACvB;;AAED,AAAA,KAAK,CAAA;EACD,QAAQ,EAAE,QAAQ;EAClB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;CAChB;;AAED,AAAA,SAAS,CAAA;EACL,QAAQ,EAAE,QAAQ;EAClB,KAAK,EAAE,KAAK;EACZ,GAAG,EAAE,GAAG;EACR,IAAI,EAAE,GAAG;CACZ",
+    "sources": [
+        "page-integration.scss"
+    ],
+    "names": [],
+    "file": "page-integration.css"
+}

@@ -38,16 +38,16 @@ register_activation_hook( __FILE__, 'create_custom_db_table' );
 
 function sl_maybe_create_table( $table_name, $create_ddl ) {
     global $wpdb;
- 
+
     $query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
- 
+
     if ( $wpdb->get_var( $query ) == $table_name ) {
         return true;
     }
- 
+
     // Didn't find it try to create it..
     $wpdb->query( $create_ddl );
- 
+
     // We cannot directly tell that whether this succeeded!
     if ( $wpdb->get_var( $query ) == $table_name ) {
         return true;
