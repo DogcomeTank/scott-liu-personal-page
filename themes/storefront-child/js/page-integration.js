@@ -2,11 +2,13 @@ var dialRotate = 0;
 var fillArmRotate = 0;
 var dialAndFillSettings = JSON.parse(dialFillSettings.settings);
 var setTime = 0;
-var setTimeInterval = 200;
+var setTimeInterval = 40;
+var setTimeIntervalFast = 20;
 var stopBtn = false;
+var rotateStep = .1;
+
+
 jQuery(document).ready(function () {
-
-
     jQuery('#run-btn').click(function () {
         autoRun(dialAndFillSettings);
     });
@@ -16,85 +18,132 @@ jQuery(document).ready(function () {
     jQuery('#reset-btn').click(function () {
         resetBtnPressed();
     });
-
 });
 
 
 
 // **********
 
-async function ResetDelayed(){
-    dialRotate += .2;
-    if(dialRotate < 0){
-        rotate('dial', dialRotate);
-        await delay();
+
+async function autoRun(array) {
+
+    jQuery('#run-btn').prop('disabled', true);
+    stopBtn = false;
+
+    if (jQuery("#run-btn").hasClass("w3-green")) {
+        jQuery("#run-btn").removeClass("w3-green").addClass('w3-grey');
+    }
+
+    for (const item of array) {
+        // Run btn pressed
+        //Dial rotation start
+        while (item.dial_rotation <= dialRotate && !stopBtn) {
+            await DialAutoRunDelayed('ccw');
+        }
+        while (item.dial_rotation >= dialRotate && !stopBtn) {
+            await DialAutoRunDelayed('cw');
+        }
+
+        // fill arm rotation start
+        while (item.fill_rotation <= fillArmRotate && !stopBtn) {
+            await FillArmAutoRunDelayed('ccw');
+        }
+        while (item.fill_rotation >= fillArmRotate && !stopBtn) {
+            await FillArmAutoRunDelayed('cw');
+        }
+
+    }
+
+    jQuery('#run-btn').prop('disabled', false);
+    if (jQuery("#run-btn").hasClass("w3-grey")) {
+        jQuery("#run-btn").removeClass("w3-grey").addClass('w3-green');
     }
 }
-async function resetBtnPressed(){
-    while(dialRotate < 0){
+
+async function ResetDelayed() {
+
+
+    if (dialRotate.toFixed(2) < 0) {
+        dialRotate += rotateStep;
+        rotate('dial', dialRotate);
+        await delay(setTimeIntervalFast);
+    }else if(dialRotate.toFixed(2) > 0){
+        dialRotate -= rotateStep;
+        rotate('dial', dialRotate);
+        await delay(setTimeIntervalFast);
+    }
+    if (fillArmRotate.toFixed(2) < 0) {
+        fillArmRotate += rotateStep;
+        rotate('fill-arm', fillArmRotate);
+        await delay(setTimeIntervalFast);
+    }else if(fillArmRotate.toFixed(2) > 0){
+        fillArmRotate -= rotateStep;
+        rotate('fill-arm', fillArmRotate);
+        await delay(setTimeIntervalFast);
+    }
+}
+async function resetBtnPressed() {
+    while (dialRotate <= 0 || fillArmRotate <=0) {
         await ResetDelayed();
     }
 }
 
-async function AutoRunDelayed() {
+async function DialAutoRunDelayed(direction) {
     // notice that we can await a function
     // that returns a promise
-    dialRotate -= .2;
-    rotate('dial', dialRotate);
-    await delay();
+    if (direction == 'ccw') {
+        dialRotate -= rotateStep;
+        rotate('dial', dialRotate);
+        await delay();
+    } else {
+        dialRotate += rotateStep;
+        rotate('dial', dialRotate);
+        await delay();
+    }
 }
-async function autoRun(array) {
 
-    jQuery('#run-btn').prop('disabled', true);
-
-    if(jQuery( "#run-btn" ).hasClass( "w3-green" )){
-        jQuery( "#run-btn" ).removeClass( "w3-green" ).addClass('w3-grey');
+async function FillArmAutoRunDelayed(direction = "ccw") {
+    // notice that we can await a function
+    // that returns a promise
+    if (direction == 'ccw') {
+        fillArmRotate -= rotateStep;
+        rotate('fill-arm', fillArmRotate);
+        await delay();
+    } else {
+        fillArmRotate += rotateStep;
+        rotate('fill-arm', fillArmRotate);
+        await delay();
     }
 
-    for (const item of array) {
-        if(!stopBtn){
-            await AutoRunDelayed(item);
-        }else{
-
-            // if stop button pressed, stop the operation
-            stopBtn = false;
-            break;
-        }
-    }
-    
-    jQuery('#run-btn').prop('disabled', false);
-    if(jQuery( "#run-btn" ).hasClass( "w3-grey" )){
-        jQuery( "#run-btn" ).removeClass( "w3-grey" ).addClass('w3-green');
-    }
 }
 
 async function resetBtn(currentPosition) {
 
     jQuery('#run-btn').prop('disabled', true);
 
-    if(jQuery( "#run-btn" ).hasClass( "w3-green" )){
-        jQuery( "#run-btn" ).removeClass( "w3-green" ).addClass('w3-grey');
+    if (jQuery("#run-btn").hasClass("w3-green")) {
+        jQuery("#run-btn").removeClass("w3-green").addClass('w3-grey');
     }
 
     for (const item of array) {
-        if(!stopBtn){
+        if (!stopBtn) {
             await AutoRunDelayed(item);
-        }else{
+        } else {
             // if stop button pressed, stop the operation
             stopBtn = false;
             break;
         }
     }
-    
+
     jQuery('#run-btn').prop('disabled', false);
-    if(jQuery( "#run-btn" ).hasClass( "w3-grey" )){
-        jQuery( "#run-btn" ).removeClass( "w3-grey" ).addClass('w3-green');
+    if (jQuery("#run-btn").hasClass("w3-grey")) {
+        jQuery("#run-btn").removeClass("w3-grey").addClass('w3-green');
     }
 
 }
 
-function delay() {
-    return new Promise(resolve => setTimeout(resolve, setTimeInterval));
+function delay(time = setTimeInterval) {
+    return new Promise(resolve => setTimeout(resolve, time));
 }
 //******* */
 
@@ -144,19 +193,19 @@ jQuery("#fill-cw-fast-btn").click(function () {
     rotate("fill-arm", fillArmRotate);
 });
 
-function rotate(imageName, rotation) {
+function rotate(componentName, rotation, direction = 'ccw') {
 
     dialRotate.toFixed(4);
     fillArmRotate.toFixed(4);
 
-    var img = document.getElementById(imageName);
+    var component = document.getElementById(componentName);
 
-    img.setAttribute('style', 'transform:rotate(' + rotation + 'deg)');
+    component.setAttribute('style', 'transform:rotate(' + rotation + 'deg)');
 
     // display the rotation angle
-    if (imageName == 'dial') {
+    if (componentName == 'dial') {
         jQuery('#dial-rotation').html(dialRotate.toFixed(4));
-    } else if (imageName == 'fill-arm') {
+    } else if (componentName == 'fill-arm') {
         jQuery('#fill-arm-rotation').html(fillArmRotate.toFixed(4));
     }
 
